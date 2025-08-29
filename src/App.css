@@ -1,0 +1,462 @@
+/* App.css */
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr; /* Header takes auto height, main content takes remaining */
+  height: 100vh; /* Fixed height to prevent scrolling */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: -apple-system, BlinkSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  overflow: hidden; /* Prevent scrolling */
+  /* Removed border: 2px solid red; */
+}
+
+.app-header {
+  grid-row: 1; /* Place header in the first row */
+  text-align: center;
+  padding: 2rem 1rem;
+  color: white;
+  /* Removed border: 2px solid blue; */
+}
+
+.app-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.app-header p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.app-main {
+  grid-row: 2; /* Place main content in the second row */
+  flex-grow: 1; /* Allow main content to take available space */
+  /* Removed margin: 0 auto; */
+  /* Removed padding: 0 1rem 2rem 1rem; */
+  display: flex; /* Use flexbox for main content */
+  flex-direction: column;
+  /* Removed justify-content: flex-end; */
+  width: 100%; /* Ensure app-main takes full width */
+  /* Removed background-color: transparent; */
+  /* Removed border: 2px solid green; */
+  /* Removed height: 500px; */ /* Revert fixed height */
+}
+
+/* New rule to remove max-width for map section */
+.app-main > .map-container {
+  max-width: none; /* Remove max-width restriction for map */
+  margin: 0; /* Remove auto margins for map */
+  padding: 0; /* Remove padding for map */
+}
+
+/* Search Input Styles */
+.search-container {
+  margin-bottom: 2rem;
+}
+
+.search-input-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.search-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.search-button {
+  padding: 0.75rem 1.5rem;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-button:hover:not(:disabled) {
+  background: #45a049;
+}
+
+.search-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Error Message */
+.error-message {
+  background: #ff6b6b;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem auto;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
+}
+
+/* City Info */
+.city-info {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 1rem auto 2rem auto;
+  max-width: 600px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
+}
+
+.city-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.city-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Map Container */
+.map-container {
+  background: white;
+}
+
+/* Custom position for zoom controls */
+.leaflet-right {
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* Map Container */
+.map-container {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
+  width: 100%; /* Map should always be 100% width */
+  height: 100%; /* Fill the parent's height */
+  /* Removed height: 85vh; */
+  /* Removed margin-top: auto; */
+  flex-grow: 1; /* Allow map to take remaining space */
+}
+
+.map {
+  height: 100%; /* Map element fills its container */
+  width: 100%; /* Map element fills its container */
+  border-radius: 12px;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .app-header p {
+    font-size: 1rem;
+  }
+  
+  .search-input-wrapper {
+    flex-direction: column;
+  }
+  
+  .search-button {
+    width: 100%;
+  }
+  
+  /* Remove fixed height for map on smaller screens, it will use 70vh */
+  .app-main {
+    padding: 0; /* Remove padding on app-main for full width on mobile */
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end; /* Changed to align to bottom */
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+  overflow: hidden; /* Added to prevent scrollbars during animation */
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px 12px 0 0; /* Rounded corners only at top */
+  padding: 0;
+  width: 100%; /* Full width */
+  height: 50vh; /* Half screen height */
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease forwards; /* Added forwards to keep final state */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #f5f5f5;
+}
+
+/* Form Styles */
+.marker-form {
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.position-info {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+  color: #666;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.btn-cancel,
+.btn-save {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cancel {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.btn-cancel:hover {
+  background: #e9ecef;
+}
+
+.btn-save {
+  background: #4CAF50;
+  color: white;
+}
+
+.btn-save:hover {
+  background: #45a049;
+}
+
+/* Map Instructions */
+.map-instructions {
+  background: #e3f2fd;
+  padding: 0.75rem 1rem;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.map-instructions p {
+  margin: 0;
+  color: #1976d2;
+  font-size: 0.9rem;
+}
+
+/* Custom Popup Styles */
+.leaflet-popup-content .custom-popup h4 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.leaflet-popup-content .custom-popup p {
+  margin: 0 0 1rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.popup-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.edit-btn {
+  background: #2196F3;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #1976D2;
+}
+
+.delete-btn {
+  background: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%); /* Start from off-screen bottom */
+    opacity: 0; /* Start with opacity 0 */
+  }
+  to {
+    transform: translateY(0); /* End at current position */
+    opacity: 1; /* End with opacity 1 */
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding: 1.5rem 1rem;
+  }
+  
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .city-info {
+    padding: 1rem;
+  }
+  
+  /* Remove fixed height for map on very small screens, it will use 70vh */
+  
+  .modal-content {
+    width: 95%;
+    margin: 1rem;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+  
+  .btn-cancel,
+  .btn-save {
+    width: 100%;
+  }
+}

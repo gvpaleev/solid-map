@@ -1,0 +1,55 @@
+.tag-filter-bar {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap; /* Prevent tags from wrapping */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.tag-list {
+  display: flex;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem; /* Space for scrollbar */
+}
+
+.tag-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.1s ease;
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.tag-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.tag-button.active {
+  background-color: #4CAF50; /* Green color for active tag */
+  border-color: #4CAF50;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+}
+
+.tag-button:active {
+  transform: scale(0.98);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.tag-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.tag-filter-bar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
